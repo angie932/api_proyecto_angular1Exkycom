@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AnunciosService } from './services/anuncios.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'julianfront';
+  title = 'APIREST';
+  public anuncios:Array<any> = []
+
+  constructor(
+    private anunciosService:AnunciosService
+  ){
+    this.anunciosService.getAnuncios().subscribe((resp: any)=>{
+      console.log(resp)
+      this.anuncios=resp
+    })
+  }
 }
